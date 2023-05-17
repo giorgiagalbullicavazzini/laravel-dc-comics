@@ -12,24 +12,21 @@
 
     <body>
         <div class="container">
-            @foreach ($comics as $comic)
             <div class="card mt-5">
                 <img src="{{ $comic->thumb }}" class="card-img-top" alt="{{ $comic->title }}">
                 <div class="card-body">
                     <h5 class="card-title">{{ $comic->title }}</h5>
                     <h6 class="card-subtitle mb-2 text-body-secondary">{{ $comic->type }} || {{ $comic->series }}</h6>
                     <p class="card-text">{{ $comic->description }}</p>
-                    <a href="{{ route('comics.show', $comic->id) }}" class="btn btn-primary">Details</a>
+                    <p class="card-text">{{ $comic->artists }}</p>
+                    <p class="card-text">{{ $comic->writers }}</p>
                 </div>
                 <div class="card-footer text-body-secondary">
                     {{ $comic->price }} || {{ $comic->sale_date }}
                 </div>
             </div>
-            @endforeach
+            <a href="{{ route('comics.index') }}" class="btn btn-primary mt-3">Return</a>
         </div>
-        {{--
-            $table->string('artists')->nullable();
-            $table->string('writers')->nullable(); --}}
     </body>
 </html>
 
