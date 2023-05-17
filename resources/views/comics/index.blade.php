@@ -28,6 +28,7 @@
                                 <h6 class="card-subtitle mb-2 text-body-secondary">{{ $comic->type }} || {{ $comic->series }}</h6>
                                 <p class="card-text">{{ \Illuminate\Support\Str::limit($comic->description, 70, $end = '...')}}</p>
                                 <a href="{{ route('comics.show', $comic->id) }}" class="btn btn-primary">Details</a>
+                                <a href="{{ route('comics.edit', $comic->id) }}" class="btn btn-primary">Modify</a>
                             </div>
                           </div>
                         </div>
