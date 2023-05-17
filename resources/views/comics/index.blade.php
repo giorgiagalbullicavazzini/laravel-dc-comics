@@ -12,7 +12,7 @@
 
     <body>
         <div class="container">
-            <a href="{{ route('comics.create') }}" class="btn btn-primary mt-5">Create new comic</a>
+            <a href="{{ route('comics.create') }}" class="btn btn-primary mt-5">Create a new comic</a>
             @foreach ($comics as $comic)
             <div class="card mt-3">
                 <img src="{{ $comic->thumb }}" class="card-img-top" alt="{{ $comic->title }}">

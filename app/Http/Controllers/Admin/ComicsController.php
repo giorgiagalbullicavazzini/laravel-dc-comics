@@ -48,8 +48,8 @@ class ComicsController extends Controller
         $newComic->series = $data['series'];
         $newComic->sale_date = $data['sale_date'];
         $newComic->type = $data['type'];
-        $newComic->artists = $data['artists'];
-        $newComic->writers = $data['writers'];
+        $newComic->artists = json_decode($data['artists']);
+        $newComic->writers = json_decode($data['writers']);
 
         $newComic->save();
 
