@@ -12,7 +12,8 @@
 
     <body>
         <div class="container">
-            <div class="card mt-5">
+            <a href="{{ route('comics.index') }}" class="btn btn-primary mt-5">Return</a>
+            <div class="card mt-3">
                 <img src="{{ $comic->thumb }}" class="card-img-top" alt="{{ $comic->title }}">
                 <div class="card-body">
                     <h5 class="card-title">{{ $comic->title }}</h5>
@@ -25,7 +26,6 @@
                     {{ $comic->price }} || {{ $comic->sale_date }}
                 </div>
             </div>
-            <a href="{{ route('comics.index') }}" class="btn btn-primary mt-3">Return</a>
         </div>
     </body>
 </html>
