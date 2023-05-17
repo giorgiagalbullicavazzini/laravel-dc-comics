@@ -11,31 +11,36 @@
     </head>
 
     <body>
-        <div class="container">
-            <a href="{{ route('comics.create') }}" class="btn btn-primary mt-5">Create a new comic</a>
-            @foreach ($comics as $comic)
-            <div class="card mt-3">
-                <img src="{{ $comic->thumb }}" class="card-img-top" alt="{{ $comic->title }}">
-                <div class="card-body">
-                    <h5 class="card-title">{{ $comic->title }}</h5>
-                    <h6 class="card-subtitle mb-2 text-body-secondary">{{ $comic->type }} || {{ $comic->series }}</h6>
-                    <p class="card-text">{{ $comic->description }}</p>
-                    <a href="{{ route('comics.show', $comic->id) }}" class="btn btn-primary">Details</a>
+        <div class="container py-5">
+            <a href="{{ route('comics.create') }}" class="btn btn-primary mb-3">Create a new comic</a>
+
+            <div class="row row-cols-1 row-cols-md-3 g-4">
+                @foreach ($comics as $comic)
+                <div class="col">
+                    <div class="card h-100 mb-3">
+                        <div class="row g-0">
+                            <div class="col-md-4">
+                                <img src="{{ $comic->thumb }}" class="img-fluid rounded-start" alt="{{ $comic->title }}">
+                            </div>
+                            <div class="col-md-8">
+                                <div class="card-body">
+                                <h5 class="card-title">{{ $comic->title }}</h5>
+                                <h6 class="card-subtitle mb-2 text-body-secondary">{{ $comic->type }} || {{ $comic->series }}</h6>
+                                <p class="card-text">{{ \Illuminate\Support\Str::limit($comic->description, 70, $end = '...')}}</p>
+                                <a href="{{ route('comics.show', $comic->id) }}" class="btn btn-primary">Details</a>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="card-footer text-body-secondary mt-auto">
+                            ${{ $comic->price }} || <strong>Release Date:</strong> {{ $comic->sale_date }}
+                        </div>
+                    </div>
                 </div>
-                <div class="card-footer text-body-secondary">
-                    {{ $comic->price }} || {{ $comic->sale_date }}
-                </div>
+                @endforeach
             </div>
-            @endforeach
         </div>
         {{--
             $table->string('artists')->nullable();
             $table->string('writers')->nullable(); --}}
     </body>
 </html>
-
-<style lang="scss" scoped>
-    .card {
-        width: 40%;
-    }
-</style>

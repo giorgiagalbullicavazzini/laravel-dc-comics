@@ -12,7 +12,7 @@
 
     <body>
         <div class="container">
-            <form action="{{ route('comics.store') }}" method="POST" class="mt-5">
+            <form action="{{ route('comics.store') }}" method="POST" class="my-5">
                 @csrf
                 <div class="mb-3">
                     <label for="title" class="form-label">Title</label>

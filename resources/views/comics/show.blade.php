@@ -11,19 +11,27 @@
     </head>
 
     <body>
-        <div class="container">
-            <a href="{{ route('comics.index') }}" class="btn btn-primary mt-5">Return</a>
-            <div class="card mt-3">
-                <img src="{{ $comic->thumb }}" class="card-img-top" alt="{{ $comic->title }}">
-                <div class="card-body">
-                    <h5 class="card-title">{{ $comic->title }}</h5>
-                    <h6 class="card-subtitle mb-2 text-body-secondary">{{ $comic->type }} || {{ $comic->series }}</h6>
-                    <p class="card-text">{{ $comic->description }}</p>
-                    <p class="card-text">{{ $comic->artists }}</p>
-                    <p class="card-text">{{ $comic->writers }}</p>
+        <div class="container py-5">
+            <div class="buttons text-center">
+                <a href="{{ route('comics.index') }}" class="btn btn-primary mb-3">Return to index</a>
+            </div>
+            <div class="card mb-3 m-auto">
+                <div class="row g-0">
+                    <div class="col-md-4">
+                        <img src="{{ $comic->thumb }}" class="img-fluid rounded-start" alt="{{ $comic->title }}">
+                    </div>
+                    <div class="col-md-8">
+                        <div class="card-body">
+                        <h5 class="card-title">{{ $comic->title }}</h5>
+                        <h6 class="card-subtitle mb-2 text-body-secondary">{{ $comic->type }} || {{ $comic->series }}</h6>
+                        <p class="card-text">{{ $comic->description }}</p>
+                        <p class="card-text"><strong>Artists:</strong> {{ preg_replace('/[\\\"\\[\\]]/', '', $comic->artists) }}</p>
+                        <p class="card-text"><strong>Writers:</strong> {{ preg_replace('/[\\\"\\[\\]]/', '', $comic->writers) }}</p>
+                    </div>
+                  </div>
                 </div>
-                <div class="card-footer text-body-secondary">
-                    {{ $comic->price }} || {{ $comic->sale_date }}
+                <div class="card-footer text-body-secondary mt-auto">
+                    ${{ $comic->price }} || <strong>Release Date:</strong> {{ $comic->sale_date }}
                 </div>
             </div>
         </div>
@@ -32,6 +40,6 @@
 
 <style lang="scss" scoped>
     .card {
-        width: 40%;
+        width: 60%;
     }
 </style>
