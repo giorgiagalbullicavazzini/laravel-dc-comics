@@ -11,6 +11,8 @@
     </head>
 
     <body>
-        
+        <div class="container">
+            <a href="{{ route('comics.index') }}" class="btn btn-primary">Lista fumetti</a>
+        </div>
     </body>
 </html>
