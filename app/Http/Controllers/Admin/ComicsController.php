@@ -3,9 +3,9 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use Illuminate\Http\Request;
+use App\Http\Requests\StoreComicRequest;
+use App\Http\Requests\UpdateComicRequest;
 use App\Models\Comic;
-use Illuminate\Validation\Rule;
 
 class ComicsController extends Controller
 {
@@ -37,20 +37,10 @@ class ComicsController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StoreComicRequest $request)
     {
+        $data = $request->validated();
         $newComic = new Comic();
-        $data = $request->validate([
-            'title' => 'required|unique:comics,title|max:150|string',
-            'description' => 'required',
-            'thumb' => 'nullable|url|ends_with:png,jpg,webp',
-            'price' => 'required|decimal:2|max:99',
-            'series' => 'nullable|max:50|string',
-            'sale_date' => 'nullable|date',
-            'type' => 'required|string|max:30',
-            'artists' => 'nullable',
-            'writers' => 'nullable',
-        ]);
         
         $newComic -> fill($data);
         $newComic->save();
@@ -89,24 +79,9 @@ class ComicsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Comic $comic)
+    public function update(UpdateComicRequest $request, Comic $comic)
     {
-        $data = $request->validate([
-            'title' => [
-                'required',
-                Rule::unique('comics')->ignore($comic->id),
-                'max:150',
-                'string'
-            ],
-            'description' => 'required',
-            'thumb' => 'nullable|url|ends_with:png,jpg,webp',
-            'price' => 'required|decimal:2|max:99',
-            'series' => 'nullable|max:50|string',
-            'sale_date' => 'nullable|date',
-            'type' => 'required|string|max:30',
-            'artists' => 'nullable',
-            'writers' => 'nullable',
-        ]);
+        $data = $request->validated();
 
         $comic->update($data);
 
